@@ -20,7 +20,7 @@ public class KwickRegional implements Application, ScribeClient
         this.endpoint = node.buildEndpoint(this, "KwicMedical");
 
         myScribe = new ScribeImpl(node, "myScribe");
-        myTopic = new Topic(new PastryIdFactory(node.getEnvironment()), "KwickHq");
+        myTopic = new Topic(new PastryIdFactory(node.getEnvironment()), "kwickRegional");
 
         this.endpoint.register();
     }
@@ -63,7 +63,7 @@ public class KwickRegional implements Application, ScribeClient
     {
         long curr_time = node.getEnvironment().getTimeSource().currentTimeMillis();
         long sent_time = ((TestScribeContent)scribeContent).time;
-        System.out.println(this + " received a ScribeContent from " + ((TestScribeContent)scribeContent).owner + ". The content took " + (curr_time - sent_time) + " ms to arrive.");
+        System.out.println(this + " received a ScribeContent from " + ((TestScribeContent)scribeContent).owner + ". The content took " + (curr_time - sent_time) + " ms to arrive." + ((TestScribeContent)scribeContent).message);
     }
 
     public void childAdded(Topic topic, NodeHandle nodeHandle) {

@@ -47,3 +47,25 @@ class TestScribeContent implements ScribeContent {
         return "Scribe message (owned by " + owner + ") was sent from " + from + " at " + time;
     }
 }
+
+class ScribePatientRecord implements ScribeContent {
+
+        Id from;
+        String owner;
+        long time;
+        String recordJson;
+
+
+    public ScribePatientRecord(Id from, String owner, long time, String patientrecord){
+        this.from = from;
+        this.owner = owner;
+        this.time = time;
+        this.recordJson = patientrecord;
+        }
+
+    public String toString()
+    {
+        return "Scribe message (owned by " + owner + ") was sent from " + from + " at " + time;
+
+    }
+}

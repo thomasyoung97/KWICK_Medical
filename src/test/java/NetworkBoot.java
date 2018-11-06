@@ -73,8 +73,9 @@ public class NetworkBoot {
 
         ///TESTING ZONE
 
+
         System.out.println('\n'+"Testing multicast..."+'\n');
-        hqApps[0].UI();
+        hqApps[0].sendMulticast();
         env.getTimeSource().sleep(3000);
 
 

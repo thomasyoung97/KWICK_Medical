@@ -1,6 +1,7 @@
 import rice.p2p.commonapi.*;
 import rice.p2p.scribe.*;
 import rice.pastry.commonapi.PastryIdFactory;
+import com.google.gson.Gson;
 import java.util.Scanner;
 
 public class KwickHq implements Application, ScribeClient
@@ -12,6 +13,7 @@ public class KwickHq implements Application, ScribeClient
     public Scribe myScribe;
     public Topic myTopic;
 
+
     public KwickHq(Node node, int ref, Id zoneId)
     {
         this.ref = ref;
@@ -20,9 +22,12 @@ public class KwickHq implements Application, ScribeClient
         this.endpoint = node.buildEndpoint(this, "KwicMedical");
 
         myScribe = new ScribeImpl(node, "myScribe");
-        myTopic = new Topic(new PastryIdFactory(node.getEnvironment()), "");
+        myTopic = new Topic(new PastryIdFactory(node.getEnvironment()), "KwickHq");
+
 
         this.endpoint.register();
+
+
     }
 
     public void subscribe()
@@ -31,9 +36,9 @@ public class KwickHq implements Application, ScribeClient
     }
 
 
-    public void sendMulticast(String message) {
-        TestScribeContent tsc = new TestScribeContent(endpoint.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis(),message);
-        myScribe.publish(myTopic, tsc);
+    public void sendMulticast() {
+        TestScribeContent tsc = new TestScribeContent(endpoint.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis(),this.getPatientRecord());
+        myScribe.publish(new Topic(new PastryIdFactory((node.getEnvironment())),"kwickRegional"), tsc);
     }
 
     public void routeMyMsgDirect(NodeHandle nh) {
@@ -78,23 +83,36 @@ public class KwickHq implements Application, ScribeClient
 
     }
 
-    public void UI ()
+
+
+
+
+
+    public String getPatientRecord()
     {
+        //retrieving the patient record from database
+        String[] patient;
         DBAccsess db = new DBAccsess();
         db.dbConnect();
-        Scanner Keyboard = new Scanner(System.in);
-        System.out.println("Kwick MedicalHQ - Please Enter a Patient Name: ");
-        String test = Keyboard.nextLine();
-        String[] patient ;
-        patient = db.queryDb("SELECT * FROM PDB WHERE PatientName ="+ "'" + test + "'");
+        patient = db.queryDb("SELECT * FROM PDB WHERE PatientName ="+ "'" + "Tom" + "'");
+
+        Gson gson = new Gson();
+
+        String patientJson = gson.toJson(patient);
+
+        return patientJson;
+    }
 
 
-        for(int i = 0; i < 3; i++)
-        {
-            System.out.println(patient[i]);
-        }
+
+
+
+
+    public void UI ()
+    {
 
     }
+
 }
 
 class NewThread extends Thread
