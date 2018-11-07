@@ -74,8 +74,8 @@ public class NetworkBoot {
         ///TESTING ZONE
 
 
-        System.out.println('\n'+"Testing multicast..."+'\n');
-        kwickHQS[0].routeMyMsgDirect(regApps[5].getNode().getLocalNodeHandle());
+        System.out.println('\n'+"Testing Ambulance Request"+'\n');
+        kwickHQS[0].routeAmbulanceReq(regApps[5].getNode().getLocalNodeHandle());
         env.getTimeSource().sleep(3000);
 
 

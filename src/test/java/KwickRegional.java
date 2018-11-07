@@ -62,6 +62,12 @@ public class KwickRegional implements Application, ScribeClient {
         endpoint.route(id, msg, null);
     }
 
+    public void confirmAmbulance(Id id)
+    {
+        Message msg = new AmbulanceConfirmation(endpoint.getId(), id, this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis(), "CONFIRM");
+        endpoint.route(id, msg, null);
+    }
+
     public void routeMyMsgDirect(NodeHandle nh) {
         Message msg = new TestMessage(endpoint.getId(), nh.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis());
         endpoint.route(null, msg, nh);
@@ -70,8 +76,9 @@ public class KwickRegional implements Application, ScribeClient {
 
     public void deliver(Id id, Message message) {
         long curr_time = node.getEnvironment().getTimeSource().currentTimeMillis();
-        long sent_time = ((TestMessage)message).time;
-        System.out.println(this + " received a message from " + ((TestMessage)message).owner + ". The message took " + (curr_time - sent_time) + " ms to arrive.");
+        long sent_time = ((AmbulanceRequest)message).time;
+        System.out.println(this + " received an ambulance request from " + ((AmbulanceRequest)message).owner + ". The message took " + (curr_time - sent_time) + " ms to arrive.");
+        this.confirmAmbulance(((AmbulanceRequest) message).from);
     }
 
     public void update(NodeHandle handle, boolean joined) {

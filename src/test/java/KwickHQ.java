@@ -72,11 +72,16 @@ public class KwickHQ implements Application, ScribeClient {
             endpoint.route(null, msg, nh);
         }
 
+        public void routeAmbulanceReq(NodeHandle nh)
+        {
+            Message msg = new AmbulanceRequest(endpoint.getId(), nh.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis());
+            endpoint.route(null, msg, nh);
+        }
 
         public void deliver(Id id, Message message) {
             long curr_time = node.getEnvironment().getTimeSource().currentTimeMillis();
-            long sent_time = ((TestMessage)message).time;
-            System.out.println(this + " received a message from " + ((TestMessage)message).owner + ". The message took " + (curr_time - sent_time) + " ms to arrive.");
+            long sent_time = ((AmbulanceConfirmation)message).time;
+            System.out.println(this + " received confirmation from" + " "+((AmbulanceConfirmation)message).owner + " " +((AmbulanceConfirmation)message).confirm + ". The message took " + (curr_time - sent_time) + " ms to arrive.");
         }
 
         public void update(NodeHandle handle, boolean joined) {
