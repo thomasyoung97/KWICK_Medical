@@ -9,7 +9,7 @@ import rice.pastry.direct.*;
 import rice.pastry.standard.RandomNodeIdFactory;
 
 public class NetworkBoot {
-    KwickHq[] hqApps;
+    KwickHQ[] kwickHQS;
     KwickRegional[] regApps;
     Id zoneId;
 
@@ -24,7 +24,7 @@ public class NetworkBoot {
 
 
         // construct the nodes and apps
-        hqApps = new KwickHq[numNodes];
+        kwickHQS = new KwickHQ[numNodes];
         regApps = new KwickRegional[numNodes];
         zoneId = nidFactory.generateNodeId();
 
@@ -50,10 +50,10 @@ public class NetworkBoot {
             System.out.println("Finished creating new node " + node);
 
             // constructing KqickHq appllications on some of the nodes.
-            if(curNode%2 == 0)
+            if(curNode < 5)
             {
-                KwickHq Hqapp = new KwickHq(node, curNode, zoneId);
-                hqApps[curNode] = Hqapp;
+                KwickHQ Hqapp = new KwickHQ(node, curNode, zoneId);
+                kwickHQS[curNode] = Hqapp;
                 Hqapp.subscribe();
             }
             else
@@ -75,7 +75,7 @@ public class NetworkBoot {
 
 
         System.out.println('\n'+"Testing multicast..."+'\n');
-        hqApps[0].sendMulticast();
+        kwickHQS[0].routeMyMsgDirect(regApps[5].getNode().getLocalNodeHandle());
         env.getTimeSource().sleep(3000);
 
 

@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f11504d-7811-4df8-a3e3-f6e9bc3b059b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/KWICK_Medical.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/KwickHQ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/KwickHq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/KwickHq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/KwickHq.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/KwickRegional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/KwickRegional.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/NetworkBoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/NetworkBoot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TestMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/KwickHq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/KwickHq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/KwickRegional.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/KwickRegional.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/NetworkBoot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/NetworkBoot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/NewThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ScribePatientRecord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/TestScribeContent.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -60,30 +68,57 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1533225249">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="class" value="1" />
+          <entry key="java" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CLASS" value="1" />
+          <entry key="JAVA" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="441" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="441" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="724">
-              <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
+            <state relative-caret-position="-3">
+              <caret line="13" column="49" lean-forward="true" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/KwickHq.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/KwickHQ.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+            <state relative-caret-position="340">
+              <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#deliver#0;class#KwickHq#0" />
-                <element signature="method#update#0;class#KwickHq#0" />
-                <element signature="method#childAdded#0;class#KwickHq#0" />
-                <element signature="method#childRemoved#0;class#KwickHq#0" />
-                <element signature="method#subscribeFailed#0;class#KwickHq#0" />
+                <element signature="e#3091#3092#0" expanded="true" />
+                <element signature="e#3143#3144#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,8 +127,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/NetworkBoot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1309">
-              <caret line="77" column="34" lean-forward="true" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
+            <state relative-caret-position="711">
+              <caret line="57" column="13" lean-forward="true" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,8 +139,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/TestMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="622">
-              <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="136">
+              <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#413#414#0" expanded="true" />
@@ -120,8 +155,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/DBAccsess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
+            <state relative-caret-position="272">
+              <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -129,15 +164,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/KwickRegional.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            <state relative-caret-position="490">
+              <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#deliver#0;class#KwickRegional#0" />
-                <element signature="method#update#0;class#KwickRegional#0" />
-                <element signature="method#childAdded#0;class#KwickRegional#0" />
-                <element signature="method#childRemoved#0;class#KwickRegional#0" />
-                <element signature="method#subscribeFailed#0;class#KwickRegional#0" />
+                <element signature="e#2830#2831#0" expanded="true" />
+                <element signature="e#2880#2881#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -168,8 +199,11 @@
         <option value="$PROJECT_DIR$/src/test/java/DBAccsess.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/TestMessage.java" />
-        <option value="$PROJECT_DIR$/src/test/java/NetworkBoot.java" />
         <option value="$PROJECT_DIR$/src/test/java/KwickHq.java" />
+        <option value="$PROJECT_DIR$/src/test/java/TestApp.java" />
+        <option value="$PROJECT_DIR$/src/test/java/KwickRegional_1.java" />
+        <option value="$PROJECT_DIR$/src/test/java/NetworkBoot.java" />
+        <option value="$PROJECT_DIR$/src/test/java/KwickHQ.java" />
         <option value="$PROJECT_DIR$/src/test/java/KwickRegional.java" />
       </list>
     </option>
@@ -193,9 +227,9 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="373" />
-    <option name="y" value="-10" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="507" />
+    <option name="y" value="786" />
     <option name="width" value="1330" />
     <option name="height" value="690" />
   </component>
@@ -205,50 +239,55 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Kwick_Medical" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kwick_Medical" type="462c0819:PsiDirectoryNode" />
+              <item name="KWICK_Medical" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KWICK_Medical" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Kwick_Medical" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kwick_Medical" type="462c0819:PsiDirectoryNode" />
+              <item name="KWICK_Medical" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KWICK_Medical" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Kwick_Medical" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kwick_Medical" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Kwick_Medical" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kwick_Medical" type="462c0819:PsiDirectoryNode" />
+              <item name="KWICK_Medical" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KWICK_Medical" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Kwick_Medical" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kwick_Medical" type="462c0819:PsiDirectoryNode" />
+              <item name="KWICK_Medical" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KWICK_Medical" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KWICK_Medical" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KWICK_Medical" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KWICK_Medical" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KWICK_Medical" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="test-classes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541525931843" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541616041678" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="SDKs" />
@@ -273,15 +312,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application">
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+  <component name="RunManager" selected="Application.Unnamed (1)">
+    <configuration name="Unnamed (1)" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="NetworkBoot" />
-      <module name="Kwick_Medical" />
+      <module name="KWICK_Medical" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Unnamed" type="Application" factoryName="Application">
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <option name="MAIN_CLASS_NAME" value="NetworkBoot" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Application.Unnamed (1)" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -297,17 +346,17 @@
       <workItem from="1541521151780" duration="600000" />
       <workItem from="1541521772459" duration="503000" />
       <workItem from="1541522293067" duration="3582000" />
+      <workItem from="1541613733201" duration="2222000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15777000" />
+    <option name="totallyTimeSpent" value="17999000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.0979021" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0989011" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -316,7 +365,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.78229666" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4995005" visible="true" weight="0.26988924" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4995005" visible="true" weight="0.26988924" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.25176233" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -378,13 +427,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/net/sf/ucanaccess/ucanaccess/3.0.6/ucanaccess-3.0.6-sources.jar!/net/ucanaccess/jdbc/UcanaccessResultSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="569" column="13" lean-forward="true" selection-start-line="569" selection-start-column="13" selection-end-line="569" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/net/sf/ucanaccess/ucanaccess/3.0.6/ucanaccess-3.0.6-sources.jar!/net/ucanaccess/jdbc/UcanaccessResultSet.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/hsqldb/hsqldb/2.2.9/hsqldb-2.2.9-sources.jar!/org/hsqldb/result/ResultMetaData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1003">
@@ -392,13 +435,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/net/sf/ucanaccess/ucanaccess/3.0.6/ucanaccess-3.0.6-sources.jar!/net/ucanaccess/jdbc/UcanaccessStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="210" selection-start-line="210" selection-end-line="210" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/net/sf/ucanaccess/ucanaccess/3.0.6/ucanaccess-3.0.6-sources.jar!/net/ucanaccess/jdbc/UcanaccessStatement.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/net/sf/ucanaccess/ucanaccess/4.0.4/ucanaccess-4.0.4-sources.jar!/net/ucanaccess/jdbc/UcanaccessStatement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3162">
@@ -406,17 +443,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/DBAccsess.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/KwickHQ.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        <state relative-caret-position="595">
+          <caret line="106" lean-forward="true" selection-start-line="91" selection-start-column="3" selection-end-line="106" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#deliver#0;class#KwickHq#0" />
+            <element signature="method#update#0;class#KwickHq#0" />
+            <element signature="method#childAdded#0;class#KwickHq#0" />
+            <element signature="method#childRemoved#0;class#KwickHq#0" />
+            <element signature="method#subscribeFailed#0;class#KwickHq#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/TestMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="136">
+          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#413#414#0" expanded="true" />
@@ -427,49 +472,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/../FreePastry_Lab/src/TestApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="724">
-          <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
+        <state relative-caret-position="102">
+          <caret line="6" column="39" lean-forward="true" selection-end-line="129" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/NetworkBoot.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/KwickRegional_1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
-          <caret line="77" column="34" lean-forward="true" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
+        <state relative-caret-position="269">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/DBAccsess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3">
+          <caret line="13" column="49" lean-forward="true" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/KwickRegional.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+        <state relative-caret-position="490">
+          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#deliver#0;class#KwickRegional#0" />
-            <element signature="method#update#0;class#KwickRegional#0" />
-            <element signature="method#childAdded#0;class#KwickRegional#0" />
-            <element signature="method#childRemoved#0;class#KwickRegional#0" />
-            <element signature="method#subscribeFailed#0;class#KwickRegional#0" />
+            <element signature="e#2830#2831#0" expanded="true" />
+            <element signature="e#2880#2881#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/KwickHq.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/NetworkBoot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+        <state relative-caret-position="711">
+          <caret line="57" column="13" lean-forward="true" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#deliver#0;class#KwickHq#0" />
-            <element signature="method#update#0;class#KwickHq#0" />
-            <element signature="method#childAdded#0;class#KwickHq#0" />
-            <element signature="method#childRemoved#0;class#KwickHq#0" />
-            <element signature="method#subscribeFailed#0;class#KwickHq#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/test-classes/ScribePatientRecord.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#665#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/KwickHQ.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3091#3092#0" expanded="true" />
+            <element signature="e#3143#3144#0" expanded="true" />
           </folding>
         </state>
       </provider>
