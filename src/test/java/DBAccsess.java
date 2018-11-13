@@ -19,7 +19,7 @@ public class DBAccsess {
         //open database connection
         try {
 
-            connection = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/40201953/IdeaProjects/Kwick_Medical/PDB.accdb");
+            connection = DriverManager.getConnection("jdbc:ucanaccess://PDB.accdb");
             System.out.println("Patient Database Connection Confimed");
 
         } catch (SQLException e) {

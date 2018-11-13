@@ -1,4 +1,5 @@
 import java.io.*;
+
 import rice.environment.Environment;
 import rice.p2p.commonapi.Id;
 import rice.pastry.NodeHandle;
@@ -9,9 +10,52 @@ import rice.pastry.direct.*;
 import rice.pastry.standard.RandomNodeIdFactory;
 
 public class NetworkBoot {
+
     KwickHQ[] kwickHQS;
     KwickRegional[] regApps;
+    KwickMobile[] mobileApps;
     Id zoneId;
+
+
+    private int findFirstEmpty(KwickHQ[] a)
+    {
+        int i;
+        for (i = 0; i < a.length; i++)
+        {
+            if (a[i] == null)
+            {
+                break;
+            }
+        }
+        return i;
+    }
+
+    private int findFirstEmpty(KwickRegional[] a)
+    {
+        int i;
+        for (i = 0; i < a.length; i++)
+        {
+            if (a[i] == null)
+            {
+                break;
+            }
+        }
+        return i;
+    }
+
+    private int findFirstEmpty(KwickMobile[] a)
+    {
+        int i;
+        for (i = 0; i < a.length; i++)
+        {
+            if (a[i] == null)
+            {
+                break;
+            }
+        }
+        return i;
+    }
+
 
 
     public NetworkBoot(Environment env, int numNodes, String fileName) throws Exception {
@@ -26,12 +70,13 @@ public class NetworkBoot {
         // construct the nodes and apps
         kwickHQS = new KwickHQ[numNodes];
         regApps = new KwickRegional[numNodes];
+        mobileApps = new KwickMobile[numNodes];
         zoneId = nidFactory.generateNodeId();
 
 
-
         // creates the nodes.
-        for (int curNode = 0; curNode < numNodes; curNode++) {
+        for (int curNode = 0; curNode < numNodes; curNode++)
+        {
             // passing the null boothandle will cause the first node to start its own Pastry ring
             PastryNode node = factory.newNode(bootHandle);
             bootHandle = node.getLocalHandle();
@@ -52,31 +97,30 @@ public class NetworkBoot {
             // constructing KqickHq appllications on some of the nodes.
             if(curNode < 5)
             {
-                KwickHQ Hqapp = new KwickHQ(node, curNode, zoneId);
-                kwickHQS[curNode] = Hqapp;
-                Hqapp.subscribe();
+                KwickMobile mobApp = new KwickMobile(node, curNode, zoneId);
+                mobileApps[findFirstEmpty(mobileApps)] = mobApp;
             }
-            else
+            else if (curNode >= 5 && curNode < 8)
             {
                 // constructing Kwick regional on some of the nodes.
                 KwickRegional regApp = new KwickRegional(node, curNode, zoneId);
-                regApps[curNode] = regApp;
-                regApp.subscribe();
+                regApps[findFirstEmpty(regApps)] = regApp;
+            }
+            else
+            {
+                KwickHQ Hqapp = new KwickHQ(node, curNode, zoneId);
+                kwickHQS[findFirstEmpty(kwickHQS)] = Hqapp;
             }
 
 
         }
 
-        env.getTimeSource().sleep(3000);
-
 
 
         ///TESTING ZONE
+        kwickHQS[0].routeAmbulanceReq(regApps[0].getNode().getLocalNodeHandle());
+        kwickHQS[0].routeMyMsg(mobileApps[0].getNode().getId());
 
-
-        System.out.println('\n'+"Testing Ambulance Request"+'\n');
-        kwickHQS[0].routeAmbulanceReq(regApps[5].getNode().getLocalNodeHandle());
-        env.getTimeSource().sleep(3000);
 
 
         // wait for 30 seconds to make sure that all the messages have been sent/received
@@ -86,6 +130,7 @@ public class NetworkBoot {
         System.out.println("Done!");
 
     }
+
 
     public static void main(String[] args) throws Exception {
         Environment env = new Environment();

@@ -2,14 +2,12 @@ import rice.p2p.commonapi.*;
 import rice.p2p.scribe.*;
 import rice.pastry.commonapi.PastryIdFactory;
 
-public class KwickRegional implements Application, ScribeClient {
+public class KwickRegional implements Application{
 
     protected Endpoint endpoint;
     protected Node node;
     public int ref;
     public Id zoneId;
-    public Scribe myScribe;
-    public Topic myTopic;
 
     public KwickRegional(Node node, int ref, Id zoneId) {
         this.ref = ref;
@@ -17,41 +15,9 @@ public class KwickRegional implements Application, ScribeClient {
         this.node = node;
         this.endpoint = node.buildEndpoint(this, "KWICK_MEDICAL");
 
-        myScribe = new ScribeImpl(node, "myScribe");
-        myTopic = new Topic(new PastryIdFactory(node.getEnvironment()), this.zoneId.toString());
-
         this.endpoint.register();
     }
 
-    public void subscribe() {
-        myScribe.subscribe(myTopic, this);
-    }
-
-
-    public void deliver(Topic topic, ScribeContent content) {
-        long curr_time = node.getEnvironment().getTimeSource().currentTimeMillis();
-        long sent_time = ((TestScribeContent)content).time;
-        System.out.println(this + " received a ScribeContent from " + ((TestScribeContent)content).owner + ". The content took " + (curr_time - sent_time) + " ms to arrive.");
-    }
-
-    public boolean anycast(Topic topic, ScribeContent content) {
-        // one third of the nodes will return true
-        boolean returnValue = ref%3 == 1;
-        if(returnValue)
-            System.out.println(this + " is interested in the anycast!" + '\n');
-        else
-            System.out.println(this + " has passed the anycast on to others." + '\n');
-        return returnValue;
-    }
-
-    public void childAdded(Topic topic, NodeHandle child) {
-    }
-
-    public void childRemoved(Topic topic, NodeHandle child) {
-    }
-
-    public void subscribeFailed(Topic topic) {
-    }
 
     public Node getNode() {
         return node;
