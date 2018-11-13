@@ -1,12 +1,4 @@
-import rice.p2p.commonapi.Application;
-import rice.p2p.commonapi.Endpoint;
-import rice.p2p.commonapi.Id;
-import rice.p2p.commonapi.Message;
-import rice.p2p.commonapi.Node;
-import rice.p2p.commonapi.NodeHandle;
-import rice.p2p.commonapi.RouteMessage;
-import rice.p2p.scribe.ScribeContent;
-import rice.p2p.scribe.Topic;
+import rice.p2p.commonapi.*;
 
 public class KwickMobile implements Application {
 
@@ -35,27 +27,30 @@ public class KwickMobile implements Application {
         endpoint.route(id, msg, null);
     }
 
-    public void routeMyMsgDirect(NodeHandle nh) {
+    public void routeMyMsgDirect(NodeHandle nh)
+    {
         Message msg = new TestMessage(endpoint.getId(), nh.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis());
         endpoint.route(null, msg, nh);
     }
 
-
-    public void deliver(Id id, Message message) {
+    public void deliver(Id id, Message message)
+    {
         long curr_time = node.getEnvironment().getTimeSource().currentTimeMillis();
         long sent_time = ((TestMessage)message).time;
         System.out.println(this + " received a message from " + ((TestMessage)message).owner + ". The message took " + (curr_time - sent_time) + " ms to arrive.");
     }
 
-    public void update(NodeHandle handle, boolean joined) {
+    public void update(NodeHandle handle, boolean joined)
+    {
     }
 
-    public boolean forward(RouteMessage message) {
+    public boolean forward(RouteMessage message)
+    {
         return true;
     }
 
     public String toString() {
-        return "MyApp" + ref;
+        return "KwickMobile" + ref;
     }
 }
 

@@ -9,11 +9,13 @@ import rice.pastry.PastryNodeFactory;
 import rice.pastry.direct.*;
 import rice.pastry.standard.RandomNodeIdFactory;
 
+
 public class NetworkBoot {
 
     KwickHQ[] kwickHQS;
     KwickRegional[] regApps;
     KwickMobile[] mobileApps;
+
     Id zoneId;
 
 
@@ -29,6 +31,7 @@ public class NetworkBoot {
         }
         return i;
     }
+
 
     private int findFirstEmpty(KwickRegional[] a)
     {
@@ -56,7 +59,18 @@ public class NetworkBoot {
         return i;
     }
 
-
+    private int findFirstEmpty(TestApp[] a)
+    {
+        int i;
+        for (i = 0; i < a.length; i++)
+        {
+            if (a[i] == null)
+            {
+                break;
+            }
+        }
+        return i;
+    }
 
     public NetworkBoot(Environment env, int numNodes, String fileName) throws Exception {
         // Generate NodeIds Randomly
@@ -102,25 +116,29 @@ public class NetworkBoot {
             }
             else if (curNode >= 5 && curNode < 8)
             {
-                // constructing Kwick regional on some of the nodes.
+                //constructing Kwick regional on some of the nodes.
                 KwickRegional regApp = new KwickRegional(node, curNode, zoneId);
                 regApps[findFirstEmpty(regApps)] = regApp;
             }
-            else
+            else if (curNode >= 8 && curNode < 12)
             {
                 KwickHQ Hqapp = new KwickHQ(node, curNode, zoneId);
                 kwickHQS[findFirstEmpty(kwickHQS)] = Hqapp;
             }
 
-
         }
 
-
-
         ///TESTING ZONE
-        kwickHQS[0].routeAmbulanceReq(regApps[0].getNode().getLocalNodeHandle());
-        kwickHQS[0].routeMyMsg(mobileApps[0].getNode().getId());
+       // kwickHQS[0].routeAmbulanceReq(regApps[0].getNode().getLocalNodeHandle());
 
+        try
+        {
+            kwickHQS[0].routeMyMsg(mobileApps[0].getNode().getId());
+        }
+       catch(Exception e)
+        {
+            System.out.println(e);
+        }
 
 
         // wait for 30 seconds to make sure that all the messages have been sent/received
@@ -135,7 +153,7 @@ public class NetworkBoot {
     public static void main(String[] args) throws Exception {
         Environment env = new Environment();
         //the number of nodes
-        int numNodes = 10;
+        int numNodes = 15;
         String fileName = "LatencyMatrix";
         NetworkBoot boot = new NetworkBoot(env, numNodes, fileName);
     }

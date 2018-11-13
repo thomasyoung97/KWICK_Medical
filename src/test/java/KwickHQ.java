@@ -1,6 +1,6 @@
 import com.google.gson.Gson;
 import rice.p2p.commonapi.*;
-import rice.p2p.scribe.*;
+
 
 
 public class KwickHQ implements Application{
@@ -20,12 +20,6 @@ public class KwickHQ implements Application{
 
         }
 
-        public void childAdded(Topic topic, NodeHandle child) {
-        }
-
-        public void childRemoved(Topic topic, NodeHandle child) {
-        }
-
 
         public Node getNode() {
             return node;
@@ -40,6 +34,7 @@ public class KwickHQ implements Application{
             Message msg = new TestMessage(endpoint.getId(), nh.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis());
             endpoint.route(null, msg, nh);
         }
+
 
         public void routeAmbulanceReq(NodeHandle nh)
         {

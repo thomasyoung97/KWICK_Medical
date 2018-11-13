@@ -1,6 +1,4 @@
 import rice.p2p.commonapi.*;
-import rice.p2p.scribe.*;
-import rice.pastry.commonapi.PastryIdFactory;
 
 public class KwickRegional implements Application{
 
@@ -9,7 +7,8 @@ public class KwickRegional implements Application{
     public int ref;
     public Id zoneId;
 
-    public KwickRegional(Node node, int ref, Id zoneId) {
+    public KwickRegional(Node node, int ref, Id zoneId)
+    {
         this.ref = ref;
         this.zoneId = zoneId;
         this.node = node;
