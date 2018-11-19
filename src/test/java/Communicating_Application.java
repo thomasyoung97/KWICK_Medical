@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+
 import rice.pastry.PastryNode;
 import rice.p2p.commonapi.*;
 import rice.p2p.commonapi.appsocket.*;
@@ -18,7 +20,8 @@ public class Communicating_Application implements Application {
     /**
      * This
      */
-    static protected Kwick_Reigonal child_Rf;
+    static protected Kwick_Reigonal child_Rf=null;
+    static protected Kwick_Hq child_Hq=null;
 
     protected Endpoint endpoint;
 
@@ -109,9 +112,13 @@ public class Communicating_Application implements Application {
         return node;
     }
 
-    public void setApplicationExtentsion(Kwick_Reigonal test)
+    public void setApplicationExtentsion(Kwick_Reigonal KR)
     {
-        child_Rf = test;
+        child_Rf = KR;
+    }
+    public void setApplicationExtentsion(Kwick_Hq KHQ)
+    {
+        child_Hq = KHQ;
     }
 
     public void routeMyMsgDirect(NodeHandle nh) {
@@ -120,12 +127,9 @@ public class Communicating_Application implements Application {
     }
 
 
-
-
-
-    public void routeAmbulanceRequest(NodeHandle nh)
+    public void routeAmbulanceRequest(NodeHandle nh,String location,String description)
     {
-        Message msg = new Ambulance_Request(endpoint.getId(), nh.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis(),"Edinburgh","-Major Trauma");
+        Message msg = new Ambulance_Request(location,description);
         endpoint.route(null, msg, nh);
     }
 
@@ -142,7 +146,7 @@ public class Communicating_Application implements Application {
     public String getPatientRecord(String Name)
     {
         //retrieving the patient record from database
-        String[] patient;
+        ArrayList<ArrayList<String>> patient;
         DBAccsess db = new DBAccsess();
         db.dbConnect();
         patient = db.queryDb("SELECT * FROM PDB WHERE PatientName ="+ "'" + Name + "'");

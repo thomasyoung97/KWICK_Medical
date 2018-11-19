@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class DBAccsess {
@@ -31,10 +32,10 @@ public class DBAccsess {
 
 
     //-QUERY DB
-    public String[] queryDb(String Query)
+    public ArrayList<ArrayList<String>> queryDb(String Query)
     {
-        String[] temp;
-        temp = new String[3];
+
+        ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
         try {
 
             statement = connection.createStatement();
@@ -43,9 +44,19 @@ public class DBAccsess {
 
             if (resultSet.next())
             {
-                temp[0]= resultSet.getString(1);
-                temp[1]= resultSet.getString(2);
-                temp[2]= resultSet.getString(3);
+                for(int i = 0; i < 3; i++)
+                {
+                    ArrayList<String> inner = new ArrayList<String>();
+                    inner.add(resultSet.getString(1));
+                    inner.add(resultSet.getString(2));
+                    inner.add(resultSet.getString(3));
+                    inner.add(resultSet.getString(4));
+                    inner.add(resultSet.getString(5));
+                    list.add(inner);
+                    resultSet.next();
+
+                }
+
             }
             else
             {
@@ -60,7 +71,7 @@ public class DBAccsess {
             System.out.print("error executing SQL statement");
         }
         cleanup();
-        return temp;
+        return list;
     }
 
 

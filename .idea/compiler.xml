@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="KWICK_Medical" />
         <module name="Kwick_Medical" />
+        <module name="KWICK_Medical" />
       </profile>
     </annotationProcessing>
   </component>
