@@ -16,12 +16,14 @@ public class Communicating_Application implements Application {
      * node the message is intended for.
      */
 
-
     /**
      * This
      */
     static protected Kwick_Reigonal child_Rf=null;
     static protected Kwick_Hq child_Hq=null;
+
+
+    String Application_Extention;
 
     protected Endpoint endpoint;
 
@@ -129,9 +131,15 @@ public class Communicating_Application implements Application {
 
     public void routeAmbulanceRequest(NodeHandle nh,String location,String description)
     {
-        Message msg = new Ambulance_Request(location,description);
+        Message msg = new Ambulance_Request(location,description,this.node.getLocalNodeHandle());
         endpoint.route(null, msg, nh);
     }
+    public void confirmAmbulanceRequest(NodeHandle nh)
+    {
+        Message msg = new Ambulance_Confirmation(endpoint.getId(), nh.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis());
+        endpoint.route(null, msg, nh);
+    }
+
 
     /**
      * communication protocol for any application sending a patient record
@@ -168,10 +176,14 @@ public class Communicating_Application implements Application {
     public void deliver(Id id, Message message)
     {
        // System.out.println(this+" received "+message);
-        if(((Ambulance_Request)message).Message_type == "Ambulance Request")
+        if(message.toString().contains("REQUEST:   "))
         {
-            child_Rf.receiveRequest(message.toString());
+            child_Rf.receiveRequest(message.toString(),(Ambulance_Request) message);
             System.out.println(child_Rf.toString());
+        }
+        else if (message.toString().contains("Confirmation"))
+        {
+            child_Hq.confirmaionRecived();
         }
     }
 

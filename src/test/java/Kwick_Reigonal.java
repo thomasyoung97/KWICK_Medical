@@ -1,3 +1,5 @@
+import rice.p2p.commonapi.Message;
+
 import javax.swing.*;
 
 public class Kwick_Reigonal {
@@ -17,11 +19,13 @@ public class Kwick_Reigonal {
         this.parent = parent;
         this.parent.setApplicationExtentsion(this);
 
+
         JFrame frame = new JFrame("Kwick_Regional");
         frame.setContentPane(this.pannel_kwick_R);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
 
         DefaultListModel model = new DefaultListModel();
         Request_list_content = model;
@@ -30,12 +34,23 @@ public class Kwick_Reigonal {
 
     }
 
-    public void receiveRequest(String request)
+    public void receiveRequest(String request, Ambulance_Request mesage)
     {
         Request_list_content.addElement(request);
         System.out.println(request);
 
+        try
+        {
+            Thread.sleep(3000);
+        }
+        catch(InterruptedException e)
+        {
+
+        }
+        parent.confirmAmbulanceRequest(mesage.getSender());
     }
+
+
 
     public int findnextempty(String[] array)
     {

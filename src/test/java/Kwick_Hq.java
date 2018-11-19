@@ -25,6 +25,7 @@ public class Kwick_Hq
     private JLabel Nhs_Number_lbl;
     private JTextField Postcode_txt;
     private JLabel Postcode_lbl;
+    private JLabel Status_lbl;
     private DefaultListModel model;
 
     public Kwick_Hq(final Communicating_Application parent)
@@ -41,8 +42,11 @@ public class Kwick_Hq
 
                 parent.routeAmbulanceRequest(parent.getNodeLeafset().get(2),Incident_txt.getText(),Description_txt.getText());
 
+                Send_Message.setEnabled(false);
+                Status_lbl.setText("Awaiting Confirmation");
             }
         });
+
         Name_txt.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String patiens = parent.getPatientRecord(Name_txt.getText());
@@ -78,5 +82,10 @@ public class Kwick_Hq
         System.out.print("Kwick_Hq_Built\n");
     }
 
+    public void confirmaionRecived()
+    {
+        Status_lbl.setText("Confirmed");
+        Send_Message.setEnabled(true);
+    }
 
 }
