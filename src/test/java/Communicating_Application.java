@@ -19,8 +19,13 @@ public class Communicating_Application implements Application {
     /**
      * This
      */
+
+    /**
+     * This acts effectively as an approved applications list. this would be done differently in a non simulated environment.
+     */
     static protected Kwick_Reigonal child_Rf=null;
     static protected Kwick_Hq child_Hq=null;
+    static  protected Kwick_Mobile child_M = null;
 
 
     String Application_Extention;
@@ -122,6 +127,10 @@ public class Communicating_Application implements Application {
     {
         child_Hq = KHQ;
     }
+    public void setApplicationExtentsion(Kwick_Mobile KM)
+    {
+        child_M = KM;
+    }
 
     public void routeMyMsgDirect(NodeHandle nh) {
         Message msg = new TestMessage(endpoint.getId(), nh.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis());
@@ -129,9 +138,9 @@ public class Communicating_Application implements Application {
     }
 
 
-    public void routeAmbulanceRequest(NodeHandle nh,String location,String description)
+    public void routeAmbulanceRequest(NodeHandle nh,String location,String description,String[] patientRecord)
     {
-        Message msg = new Ambulance_Request(location,description,this.node.getLocalNodeHandle());
+        Message msg = new Ambulance_Request(location,description,this.node.getLocalNodeHandle(),patientRecord);
         endpoint.route(null, msg, nh);
     }
     public void confirmAmbulanceRequest(NodeHandle nh)
@@ -140,23 +149,32 @@ public class Communicating_Application implements Application {
         endpoint.route(null, msg, nh);
     }
 
+    public void appendPatentRecord(String[] patientRecord,String Existing_ap, String Callout_ap)
+    {
+        DBAccsess db = new DBAccsess();
+        db.dbConnect();
+        db.appendRecord(patientRecord,Existing_ap,Callout_ap);
 
+
+    }
     /**
      * communication protocol for any application sending a patient record
      * @param nh - node header to send the record to
-     * @param Name - Name of the patient you request is regarding
+     *
      */
-    public void routePatentRecord(NodeHandle nh, String Name)
+    public void routePatentRecord(NodeHandle nh, String[] patient,String acidentDescription)
     {
-        Message msg = new P_Record_Message(endpoint.getId(), nh.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis(),getPatientRecord(Name));
+        Message msg = new P_Record_Message(patient,acidentDescription);
         endpoint.route(null, msg, nh);
     }
+
     public String getPatientRecord(String Name)
     {
         //retrieving the patient record from database
         ArrayList<ArrayList<String>> patient;
         DBAccsess db = new DBAccsess();
         db.dbConnect();
+
         patient = db.queryDb("SELECT * FROM PDB WHERE PatientName ="+ "'" + Name + "'");
 
         Gson gson = new Gson();
@@ -165,9 +183,6 @@ public class Communicating_Application implements Application {
 
         return patientJson;
     }
-
-
-
 
     /**
      * Called when we receive a message.
@@ -184,6 +199,10 @@ public class Communicating_Application implements Application {
         else if (message.toString().contains("Confirmation"))
         {
             child_Hq.confirmaionRecived();
+        }
+        else if(message.toString().contains("Patient Record"))
+        {
+            child_M.reciveRecord((P_Record_Message)message);
         }
     }
 

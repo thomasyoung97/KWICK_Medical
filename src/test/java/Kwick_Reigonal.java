@@ -5,7 +5,6 @@ import javax.swing.*;
 public class Kwick_Reigonal {
 
     protected String[] ReqBackLog;
-    private JTextField Incident_location_txt;
     private JLabel Incident_location_lbl;
     private JPanel pannel_kwick_R;
     private JList Requests_list;
@@ -34,22 +33,31 @@ public class Kwick_Reigonal {
 
     }
 
-    public void receiveRequest(String request, Ambulance_Request mesage)
+    public void receiveRequest(String request, Ambulance_Request message)
     {
         Request_list_content.addElement(request);
         System.out.println(request);
 
         try
         {
-            Thread.sleep(3000);
+            Request_list_content.addElement("...Processing request");
+            Thread.sleep(1500);
+            Request_list_content.addElement("...Dispatching ambulance");
+            Thread.sleep(1500);
+            dispatchAmbulance(message);
         }
         catch(InterruptedException e)
         {
 
         }
-        parent.confirmAmbulanceRequest(mesage.getSender());
+        parent.confirmAmbulanceRequest(message.getSender());
     }
 
+    public void dispatchAmbulance(Ambulance_Request req)
+    {
+        String[] tokens = Request_list_content.getElementAt(0).toString().split("/");
+        parent.routePatentRecord(parent.getNodeLeafset().get(3),req.getPatientRecord(),tokens[1]);
+    }
 
 
     public int findnextempty(String[] array)

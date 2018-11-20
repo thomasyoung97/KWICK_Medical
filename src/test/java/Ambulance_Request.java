@@ -8,12 +8,14 @@ public class Ambulance_Request implements Message {
     private String location;
     private String accident_description;
     private NodeHandle sender;
+    private String[] patientRecord;
 
-    public Ambulance_Request(String location, String acd, NodeHandle nh) {
+    public Ambulance_Request(String location, String acd, NodeHandle nh,String[] patientRecord) {
 
         this.location = location;
         this.accident_description = acd;
         this.sender = nh;
+        this.patientRecord =patientRecord;
 
     }
 
@@ -24,6 +26,10 @@ public class Ambulance_Request implements Message {
     public NodeHandle getSender()
     {
         return sender;
+    }
+    public String[] getPatientRecord()
+    {
+        return patientRecord;
     }
 
     public String toString() {

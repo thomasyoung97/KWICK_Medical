@@ -93,8 +93,16 @@ public class NetworkBoot {
 
         }
 
+
+        /**
+         * Assigining applications to the comunication layer;
+         * in a non simulated environment these applications would be added via the device using
+         * devised protocols.
+         */
+
         Kwick_Hq test = new Kwick_Hq(apps.get(0));
         Kwick_Reigonal regional = new Kwick_Reigonal(apps.get(1));
+        Kwick_Mobile mobile = new Kwick_Mobile(apps.get(3));
 
         // wait 10 seconds
         env.getTimeSource().sleep(1000);

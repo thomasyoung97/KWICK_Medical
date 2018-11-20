@@ -30,6 +30,27 @@ public class DBAccsess {
 
     }
 
+    public void appendRecord(String[] patientRecord,String Existing_ap, String Callout_ap)
+    {
+        try
+        {
+
+            statement = connection.createStatement();
+            System.out.println(patientRecord[0] + patientRecord[1]+ patientRecord[2]+ patientRecord[3]+ patientRecord[4]+ patientRecord[5]+ patientRecord[6]);
+            statement.executeUpdate("delete FROM PDB WHERE NhsNumber =" + patientRecord[6]);
+            statement =connection.createStatement();
+            statement.executeUpdate("INSERT into PDB(NhsNumber,PatientName,PatientAge,Post Code,Adress,Existing Conditions,Previous Callouts" +
+                    "VALUES("+patientRecord[6]+","+patientRecord[1]+","+patientRecord[2]+","+patientRecord[3]+","
+                    +patientRecord[4]+","+patientRecord[5]+","+patientRecord[5]+","+Callout_ap);
+
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+        }
+
+
+    }
 
     //-QUERY DB
     public ArrayList<ArrayList<String>> queryDb(String Query)
@@ -47,11 +68,14 @@ public class DBAccsess {
                 for(int i = 0; i < 3; i++)
                 {
                     ArrayList<String> inner = new ArrayList<String>();
+
                     inner.add(resultSet.getString(1));
                     inner.add(resultSet.getString(2));
                     inner.add(resultSet.getString(3));
                     inner.add(resultSet.getString(4));
                     inner.add(resultSet.getString(5));
+                    inner.add(resultSet.getString(6));
+                    inner.add(resultSet.getString(7));
                     list.add(inner);
                     resultSet.next();
 

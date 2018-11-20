@@ -4,26 +4,31 @@ import rice.p2p.scribe.ScribeContent;
 
 public class P_Record_Message implements Message {
 
-    Id from;
-    Id to;
-    String owner;
-    String record;
-    long time;
+    String[] record;
+    String acidentDescription;
 
-    public P_Record_Message(Id from, Id to, String owner, long time, String record) {
-        this.from = from;
-        this.to = to;
-        this.owner = owner;
-        this.time = time;
+
+    public P_Record_Message(String[] record,String acidentDescription) {
+
         this.record = record;
+        this.acidentDescription = acidentDescription;
     }
 
     public int getPriority() {
         return Message.LOW_PRIORITY;
     }
 
+    public String[] getRecord()
+    {
+        return record;
+    }
+    public String getAcidentDescription()
+    {
+        return acidentDescription;
+    }
+
     public String toString() {
-        return "Patient Record (sent from application " + owner + ") was sent from " + from + " to " + to + " at " + time + record;
+        return "Patient Record " + record;
     }
 }
 

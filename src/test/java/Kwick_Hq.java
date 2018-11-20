@@ -1,8 +1,12 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class Kwick_Hq
@@ -10,7 +14,6 @@ public class Kwick_Hq
     protected Communicating_Application parent;
     private JButton Send_Message;
     private JPanel panel1;
-    private JLabel Name_lbl;
     private JTextField Name_txt;
     private JTextField Age_txt;
     private JLabel Age_lbl;
@@ -26,7 +29,11 @@ public class Kwick_Hq
     private JTextField Postcode_txt;
     private JLabel Postcode_lbl;
     private JLabel Status_lbl;
+    private JLabel Logo;
+    private JLabel Name_lbl;
     private DefaultListModel model;
+    private String[] RecordBuffer;
+    private BufferedImage img;
 
     public Kwick_Hq(final Communicating_Application parent)
     {
@@ -40,7 +47,7 @@ public class Kwick_Hq
         Send_Message.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                parent.routeAmbulanceRequest(parent.getNodeLeafset().get(2),Incident_txt.getText(),Description_txt.getText());
+                parent.routeAmbulanceRequest(parent.getNodeLeafset().get(2),Incident_txt.getText(),Description_txt.getText(),RecordBuffer);
 
                 Send_Message.setEnabled(false);
                 Status_lbl.setText("Awaiting Confirmation");
@@ -57,6 +64,7 @@ public class Kwick_Hq
                 {
                     model.addElement("MATCH: "+tokens[i].replace("[","").replace("]","")
                             .replace("\"", ""));
+                    System.out.println(tokens[i]);
                 }
 
             }
@@ -65,6 +73,7 @@ public class Kwick_Hq
             public void valueChanged(ListSelectionEvent e) {
 
                 String[] tokens = list1.getSelectedValue().toString().split(",");
+                RecordBuffer = tokens;
                 Nhs_Number.setText(tokens[0].replace("MATCH:",""));
                 Age_txt.setText(tokens[2]);
                 Postcode_txt.setText(tokens[3]);
@@ -73,11 +82,14 @@ public class Kwick_Hq
             }
         });
 
+        Logo.setIcon(new ImageIcon("KwickMedical.png"));
+
         JFrame frame = new JFrame("Kwick_Hq");
         frame.setContentPane(this.panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
 
         System.out.print("Kwick_Hq_Built\n");
     }
