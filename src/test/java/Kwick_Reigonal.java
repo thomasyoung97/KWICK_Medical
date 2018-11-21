@@ -44,21 +44,25 @@ public class Kwick_Reigonal {
             Thread.sleep(1500);
             Request_list_content.addElement("...Dispatching ambulance");
             Thread.sleep(1500);
+            Request_list_content.addElement("...Sending Patient Report");
+            Thread.sleep(1000);
             dispatchAmbulance(message);
+            Request_list_content.addElement("Ambulance Dispatched");
         }
         catch(InterruptedException e)
         {
 
         }
+
         parent.confirmAmbulanceRequest(message.getSender());
     }
 
+
     public void dispatchAmbulance(Ambulance_Request req)
     {
-        String[] tokens = Request_list_content.getElementAt(0).toString().split("/");
+        String[] tokens = Request_list_content.getElementAt(0).toString().split("/"); // accident description.
         parent.routePatentRecord(parent.getNodeLeafset().get(3),req.getPatientRecord(),tokens[1]);
     }
-
 
     public int findnextempty(String[] array)
     {

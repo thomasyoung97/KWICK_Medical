@@ -1,3 +1,4 @@
+import java.awt.geom.PathIterator;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -180,17 +181,15 @@ public class Communicating_Application implements Application {
         Gson gson = new Gson();
 
         String patientJson = gson.toJson(patient);
-
+        System.out.println(patientJson);
         return patientJson;
     }
 
     /**
      * Called when we receive a message.
      */
-
     public void deliver(Id id, Message message)
     {
-       // System.out.println(this+" received "+message);
         if(message.toString().contains("REQUEST:   "))
         {
             child_Rf.receiveRequest(message.toString(),(Ambulance_Request) message);

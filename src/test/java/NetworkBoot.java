@@ -43,7 +43,7 @@ public class NetworkBoot {
         // construct the PastryNodeFactory
         PastryNodeFactory factory;
         if (useDirect) {
-            NetworkSimulator<DirectNodeHandle,RawMessage> sim = new EuclideanNetwork<DirectNodeHandle,RawMessage>(env);
+            NetworkSimulator<DirectNodeHandle, RawMessage> sim = new EuclideanNetwork<DirectNodeHandle, RawMessage>(env);
             factory = new DirectPastryNodeFactory(nidFactory, sim, env);
         } else {
             factory = new SocketPastryNodeFactory(nidFactory, bindport, env);
@@ -77,19 +77,19 @@ public class NetworkBoot {
             }
 
             // the node may require sending several messages to fully boot into the ring
-            synchronized(node) {
-                while(!node.isReady() && !node.joinFailed()) {
+            synchronized (node) {
+                while (!node.isReady() && !node.joinFailed()) {
                     // delay so we don't busy-wait
                     node.wait(500);
 
                     // abort if can't join
                     if (node.joinFailed()) {
-                        throw new IOException("Could not join the FreePastry ring.  Reason:"+node.joinFailedReason());
+                        throw new IOException("Could not join the FreePastry ring.  Reason:" + node.joinFailedReason());
                     }
                 }
             }
 
-            System.out.println("Finished creating new node "+node);
+            System.out.println("Finished creating new node " + node);
 
         }
 
@@ -99,54 +99,18 @@ public class NetworkBoot {
          * in a non simulated environment these applications would be added via the device using
          * devised protocols.
          */
-
         Kwick_Hq test = new Kwick_Hq(apps.get(0));
         Kwick_Reigonal regional = new Kwick_Reigonal(apps.get(1));
         Kwick_Mobile mobile = new Kwick_Mobile(apps.get(3));
 
         // wait 10 seconds
-        env.getTimeSource().sleep(1000);
+        if(apps.get(0)!= null)
+        {
+            env.getTimeSource().sleep(1000);
+        }
 
-
-
-//    Communicating_Application tempApp = (Communicating_Application)apps.get(0);
-//    tempApp.sendMyMsgDirect(((PastryNode)tempApp.getNode()).getLeafSet().get(-1));
-//    if (true) return;
-        /*
-        // for each app
-        Iterator<Communicating_Application> appIterator = apps.iterator();
-        while(appIterator.hasNext()) {
-            Communicating_Application app = (Communicating_Application)appIterator.next();
-            PastryNode node = (PastryNode)app.getNode();
-            }
-            // send directly to my leafset (including myself)
-            LeafSet leafSet = node.getLeafSet();
-
-            // this is a typical loop to cover your leafset.  Note that if the leafset
-            // overlaps, then duplicate nodes will be sent to twice
-            for (int i=-leafSet.ccwSize(); i<=leafSet.cwSize(); i++) {
-                // select the item
-                NodeHandle nh = leafSet.get(i);
-
-                // send the message directly to the node
-                app.sendMyMsgDirect(nh);
-
-                // wait a bit
-                env.getTimeSource().sleep(100);
-            }
-            */
-        //}
     }
 
-    /**
-     * Usage:
-     * java [-cp FreePastry-<version>.jar] rice.tutorial.appsocket.NetworkBoot localbindport bootIP bootPort numNodes
-     *   or
-     * java [-cp FreePastry-<version>.jar] rice.tutorial.appsocket.NetworkBoot -direct numNodes
-     *
-     * example java rice.tutorial.DistTutorial 9001 pokey.cs.almamater.edu 9001 10
-     * example java rice.tutorial.DistTutorial -direct 10
-     */
     public static void main(String[] args) throws Exception {
         try {
 
@@ -184,14 +148,6 @@ public class NetworkBoot {
             // launch our node!
             NetworkBoot dt = new NetworkBoot(bindport, bootaddress, numNodes, env, useDirect);
         } catch (Exception e) {
-            // remind user how to use
-            System.out.println("Usage:");
-            System.out.println("java [-cp FreePastry-<version>.jar] rice.tutorial.appsocket.NetworkBoot localbindport bootIP bootPort numNodes");
-            System.out.println("  or");
-            System.out.println("java [-cp FreePastry-<version>.jar] rice.tutorial.appsocket.NetworkBoot -direct numNodes");
-            System.out.println();
-            System.out.println("example java rice.tutorial.DistTutorial 9001 pokey.cs.almamater.edu 9001 10");
-            System.out.println("example java rice.tutorial.DistTutorial -direct 10");
             throw e;
         }
     }

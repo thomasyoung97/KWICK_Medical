@@ -7,10 +7,11 @@ public class DBAccsess {
     private static Connection connection = null;
     private static Statement statement = null;
     private static ResultSet resultSet = null;
-
+    private int tableSize;
 
     //-Construct DB class and load drivers
-    public static void DBAccsess() {
+    public DBAccsess()
+    {
 
     }
 
@@ -30,27 +31,72 @@ public class DBAccsess {
 
     }
 
+    /**
+     * For some reason ResultSet dose not have a method for get rows
+     * and when you try and count them it moves the row pointer causing issues
+     * so ive had to call a separate identical query and to get the size of the one in use.
+     * not ideal but it works.
+     */
+    private int getResultSize(String Query)
+    {
+        Connection connection;
+        ResultSet rs = null;
+        try
+        {
+            connection = DriverManager.getConnection("jdbc:ucanaccess://PDB.accdb");
+            Statement statement = connection.createStatement();
+            rs = statement.executeQuery(Query);
+        }
+        catch (SQLException e)
+        {
+
+        }
+
+        int count = 0;
+        try
+        {
+
+            while (rs.next())
+            {
+                count++;
+            }
+        }
+        catch(SQLException e)
+        {
+
+        }
+      return count;
+    }
+
+
+
     public void appendRecord(String[] patientRecord,String Existing_ap, String Callout_ap)
     {
         try
         {
+           String sql = "UPDATE PDB SET ExistingConditions = ? , PreviousCallouts = ? WHERE NhsNumber = ?";
+           PreparedStatement psmt = connection.prepareStatement(sql);
 
-            statement = connection.createStatement();
-            System.out.println(patientRecord[0] + patientRecord[1]+ patientRecord[2]+ patientRecord[3]+ patientRecord[4]+ patientRecord[5]+ patientRecord[6]);
-            statement.executeUpdate("delete FROM PDB WHERE NhsNumber =" + patientRecord[6]);
-            statement =connection.createStatement();
-            statement.executeUpdate("INSERT into PDB(NhsNumber,PatientName,PatientAge,Post Code,Adress,Existing Conditions,Previous Callouts" +
-                    "VALUES("+patientRecord[6]+","+patientRecord[1]+","+patientRecord[2]+","+patientRecord[3]+","
-                    +patientRecord[4]+","+patientRecord[5]+","+patientRecord[5]+","+Callout_ap);
-
+           if(patientRecord[6] == "None" || patientRecord == null)
+           {
+               psmt.setString(1,Existing_ap);
+           }
+           else
+           {
+               psmt.setString(1,patientRecord[5]+" / "+Existing_ap);
+           }
+            psmt.setString(2 , Callout_ap);
+            psmt.setInt(3,Integer.valueOf(patientRecord[6]));
+           int nrows = psmt.executeUpdate();
         }
         catch(SQLException e)
         {
             System.out.println(e);
         }
 
-
     }
+
+
 
     //-QUERY DB
     public ArrayList<ArrayList<String>> queryDb(String Query)
@@ -61,11 +107,12 @@ public class DBAccsess {
 
             statement = connection.createStatement();
             resultSet = statement.executeQuery(Query);
-
+            System.out.println(getResultSize(Query));
 
             if (resultSet.next())
             {
-                for(int i = 0; i < 3; i++)
+
+                for(int i = 0; i < getResultSize(Query); i++)
                 {
                     ArrayList<String> inner = new ArrayList<String>();
 
@@ -78,14 +125,13 @@ public class DBAccsess {
                     inner.add(resultSet.getString(7));
                     list.add(inner);
                     resultSet.next();
-
                 }
+
 
             }
             else
             {
                 System.out.println("result set empty");
-
             }
 
         }

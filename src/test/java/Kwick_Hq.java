@@ -1,12 +1,18 @@
+import com.google.gson.Gson;
+
 import javax.imageio.ImageIO;
+import javax.naming.Name;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 public class Kwick_Hq
@@ -31,6 +37,7 @@ public class Kwick_Hq
     private JLabel Status_lbl;
     private JLabel Logo;
     private JLabel Name_lbl;
+    private JButton Search_btn;
     private DefaultListModel model;
     private String[] RecordBuffer;
     private BufferedImage img;
@@ -54,31 +61,83 @@ public class Kwick_Hq
             }
         });
 
-        Name_txt.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        Search_btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                if(Name_txt.getText() == "")
+                {
+                    JOptionPane.showMessageDialog(null,"Please Enter a Name");
+                    return;
+                }
+
                 String patiens = parent.getPatientRecord(Name_txt.getText());
 
                 String[] tokens = patiens.split("],\\[");
 
                 for(int i = 0; i < tokens.length; i++)
                 {
-                    model.addElement("MATCH: "+tokens[i].replace("[","").replace("]","")
-                            .replace("\"", ""));
-                    System.out.println(tokens[i]);
+
+                    String a = "[]";
+                    System.out.println(a);
+                    System.out.println(patiens);
+                    System.out.println((patiens == a));
+
+                    if ( !tokens[0].contains(",")) // if no results found.
+                    {
+                        JOptionPane.showMessageDialog(null, "No Record Found under that name");
+                        return;
+                    }
+                    else
+                    {
+                        model.addElement("MATCH: "+tokens[i].replace("[","").replace("]","")
+                                .replace("\"", ""));
+                    }
                 }
 
             }
         });
+
+        Name_txt.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                if(Name_txt.getText() == "")
+                {
+                    JOptionPane.showMessageDialog(null,"Please Enter a Name");
+                    return ;
+                }
+
+                String patiens = parent.getPatientRecord(Name_txt.getText());
+
+                String[] tokens = patiens.split("],\\[");
+
+
+                for(int i = 0; i < tokens.length; i++)
+                {
+
+                    if (!tokens[0].contains(","))// if not results found.
+                    {
+                        JOptionPane.showMessageDialog(null, "No Record Found under that name");
+                       return;
+                    }
+                    else
+                    {
+                        model.addElement("MATCH: "+tokens[i].replace("[","").replace("]","")
+                                .replace("\"", ""));
+                    }
+                }
+
+            }
+        });
+
         list1.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
 
                 String[] tokens = list1.getSelectedValue().toString().split(",");
                 RecordBuffer = tokens;
-                Nhs_Number.setText(tokens[0].replace("MATCH:",""));
-                Age_txt.setText(tokens[2]);
-                Postcode_txt.setText(tokens[3]);
-                Adress_txt.setText(tokens[4]);
-
+                Nhs_Number.setText(tokens[5].replace("MATCH:",""));
+                Age_txt.setText(tokens[1]);
+                Postcode_txt.setText(tokens[2]);
+                Adress_txt.setText(tokens[3]);
             }
         });
 
@@ -90,8 +149,23 @@ public class Kwick_Hq
         frame.pack();
         frame.setVisible(true);
 
+    }
 
-        System.out.print("Kwick_Hq_Built\n");
+    public boolean checkDataEntered()
+    {
+
+        if(Name_txt.getText() == "")
+        {
+            JOptionPane.showMessageDialog(null,"Please Enter a Name");
+            return false;
+        }
+        else if(Adress_txt.getText() == "")
+        {
+            JOptionPane.showMessageDialog(null,"Please Enter a Name");
+            return false;
+        }
+
+      return true;
     }
 
     public void confirmaionRecived()

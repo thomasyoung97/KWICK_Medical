@@ -50,10 +50,10 @@ public class Kwick_Mobile {
     {
        RecordBuffer = record.getRecord();
 
-        Name_txt.setText(RecordBuffer[0]);
+        Name_txt.setText(RecordBuffer[0].replace("MATCH:",""));
         Age_txt.setText(RecordBuffer[1]);
         Acident_Information_lbl.setText(record.getAcidentDescription().replace("Accident Description:",""));
-        Pre_Existing_txt.setText(RecordBuffer[4]);
+        Pre_Existing_txt.setText(RecordBuffer[5]);
     }
 
 
