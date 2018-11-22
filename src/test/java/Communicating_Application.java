@@ -133,12 +133,6 @@ public class Communicating_Application implements Application {
         child_M = KM;
     }
 
-    public void routeMyMsgDirect(NodeHandle nh) {
-        Message msg = new TestMessage(endpoint.getId(), nh.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis());
-        endpoint.route(null, msg, nh);
-    }
-
-
     public void routeAmbulanceRequest(NodeHandle nh,String location,String description,String[] patientRecord)
     {
         Message msg = new Ambulance_Request(location,description,this.node.getLocalNodeHandle(),patientRecord);
@@ -146,7 +140,7 @@ public class Communicating_Application implements Application {
     }
     public void confirmAmbulanceRequest(NodeHandle nh)
     {
-        Message msg = new Ambulance_Confirmation(endpoint.getId(), nh.getId(), this.toString(), node.getEnvironment().getTimeSource().currentTimeMillis());
+        Message msg = new Ambulance_Confirmation();
         endpoint.route(null, msg, nh);
     }
 

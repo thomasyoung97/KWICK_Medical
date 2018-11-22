@@ -4,7 +4,6 @@ import rice.p2p.commonapi.NodeHandle;
 
 public class Ambulance_Request implements Message {
 
-    String Message_type = "Ambulance Request";
     private String location;
     private String accident_description;
     private NodeHandle sender;

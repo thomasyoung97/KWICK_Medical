@@ -54,17 +54,24 @@ public class Kwick_Hq
         Send_Message.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                parent.routeAmbulanceRequest(parent.getNodeLeafset().get(2),Incident_txt.getText(),Description_txt.getText(),RecordBuffer);
-
-                Send_Message.setEnabled(false);
-                Status_lbl.setText("Awaiting Confirmation");
+                System.out.println(checkDataEntered());
+                if(checkDataEntered() == false)
+                {
+                    JOptionPane.showMessageDialog(null,"Please Fill In All Fields");
+                }
+                else
+                {
+                    parent.routeAmbulanceRequest(parent.getNodeLeafset().get(2),Incident_txt.getText(),Description_txt.getText(),RecordBuffer);
+                    Send_Message.setEnabled(false);
+                    Status_lbl.setText("Awaiting Confirmation");
+                }
             }
         });
 
         Search_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                if(Name_txt.getText() == "")
+                if(Name_txt.getText().equals(""))
                 {
                     JOptionPane.showMessageDialog(null,"Please Enter a Name");
                     return;
@@ -76,11 +83,6 @@ public class Kwick_Hq
 
                 for(int i = 0; i < tokens.length; i++)
                 {
-
-                    String a = "[]";
-                    System.out.println(a);
-                    System.out.println(patiens);
-                    System.out.println((patiens == a));
 
                     if ( !tokens[0].contains(",")) // if no results found.
                     {
@@ -100,7 +102,7 @@ public class Kwick_Hq
         Name_txt.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                if(Name_txt.getText() == "")
+                if(Name_txt.getText().equals(""))
                 {
                     JOptionPane.showMessageDialog(null,"Please Enter a Name");
                     return ;
@@ -151,22 +153,32 @@ public class Kwick_Hq
 
     }
 
+
     public boolean checkDataEntered()
     {
-
-        if(Name_txt.getText() == "")
+        if(Name_txt.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(null,"Please Enter a Name");
             return false;
         }
-        else if(Adress_txt.getText() == "")
+        else if(Adress_txt.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(null,"Please Enter a Name");
             return false;
         }
-
-      return true;
+        else if(Description_txt.getText().equals(""))
+        {
+            return false;
+        }
+        else if(Incident_txt.getText().equals(""))
+        {
+            return false;
+        }
+        else if(Age_txt.getText().equals(""))
+        {
+            return false;
+        }
+        else return !Postcode_txt.getText().equals("");
     }
+
 
     public void confirmaionRecived()
     {

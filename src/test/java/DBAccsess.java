@@ -7,7 +7,6 @@ public class DBAccsess {
     private static Connection connection = null;
     private static Statement statement = null;
     private static ResultSet resultSet = null;
-    private int tableSize;
 
     //-Construct DB class and load drivers
     public DBAccsess()
